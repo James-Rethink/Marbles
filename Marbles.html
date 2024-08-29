@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marble Draw Simulator</title>
+</head>
+<body>
+    <h1>Marble Draw Simulator</h1>
+    <button onclick="drawMarbles()">Draw 10 Marbles</button>
+    <p id="result"></p>
+    <p id="summary"></p>
+
+    <script>
+        function drawMarbles() {
+            const marbles = [];
+            for (let i = 0; i < 50; i++) marbles.push('Blue');
+            for (let i = 0; i < 25; i++) marbles.push('Yellow');
+            for (let i = 0; i < 25; i++) marbles.push('Red');
+
+            const drawnMarbles = [];
+            for (let i = 0; i < 10; i++) {
+                const randomIndex = Math.floor(Math.random() * marbles.length);
+                drawnMarbles.push(marbles[randomIndex]);
+                marbles.splice(randomIndex, 1);
+            }
+
+            const summary = {
+                Blue: 0,
+                Yellow: 0,
+                Red: 0
+            };
+
+            drawnMarbles.forEach(marble => {
+                summary[marble]++;
+            });
+
+            document.getElementById('result').innerText = 'Drawn Marbles: ' + drawnMarbles.join(', ');
+            document.getElementById('summary').innerText = 
+                `Summary: Blue - ${summary.Blue}, Yellow - ${summary.Yellow}, Red - ${summary.Red}`;
+        }
+    </script>
+</body>
+</html>
+
