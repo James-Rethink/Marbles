@@ -15,15 +15,15 @@
     <script>
         function drawMarbles(numberOfMarbles) {
             const marbles = [];
-            for (let i = 0; i < 50; i++) marbles.push('Blue');
-            for (let i = 0; i < 25; i++) marbles.push('Yellow');
-            for (let i = 0; i < 25; i++) marbles.push('Red');
+            for (let i = 0; i < 500; i++) marbles.push('Blue');
+            for (let i = 0; i < 250; i++) marbles.push('Yellow');
+            for (let i = 0; i < 250; i++) marbles.push('Red');
 
             const drawnMarbles = [];
             for (let i = 0; i < numberOfMarbles; i++) {
                 const randomIndex = Math.floor(Math.random() * marbles.length);
                 drawnMarbles.push(marbles[randomIndex]);
-                marbles.splice(randomIndex, 1);
+                marbles.splice(randomIndex, 1); // Remove the drawn marble
             }
 
             const summary = {
@@ -32,10 +32,12 @@
                 Red: 0
             };
 
+            // Count occurrences of each marble
             drawnMarbles.forEach(marble => {
                 summary[marble]++;
             });
 
+            // Display drawn marbles and summary
             document.getElementById('result').innerText = `Drawn Marbles (${numberOfMarbles}): ` + drawnMarbles.join(', ');
             document.getElementById('summary').innerText = 
                 `Summary: Blue - ${summary.Blue}, Yellow - ${summary.Yellow}, Red - ${summary.Red}`;
