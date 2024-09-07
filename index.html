@@ -7,6 +7,71 @@
 </head>
 <body>
     <h1>Marble Draw Simulator</h1>
+
+    <h2>Bag 1 (500 Blue, 250 Red, 250 Yellow)</h2>
+    <button onclick="drawMarbles(10, 'bag1')">Draw 10 Marbles from Bag 1</button>
+    <button onclick="drawMarbles(20, 'bag1')">Draw 20 Marbles from Bag 1</button>
+    <button onclick="drawMarbles(50, 'bag1')">Draw 50 Marbles from Bag 1</button>
+
+    <h2>Bag 2 (300 Blue, 400 Red, 300 Yellow)</h2>
+    <button onclick="drawMarbles(10, 'bag2')">Draw 10 Marbles from Bag 2</button>
+    <button onclick="drawMarbles(20, 'bag2')">Draw 20 Marbles from Bag 2</button>
+    <button onclick="drawMarbles(50, 'bag2')">Draw 50 Marbles from Bag 2</button>
+
+    <p id="result"></p>
+    <p id="summary"></p>
+
+    <script>
+        function drawMarbles(numberOfMarbles, bag) {
+            let marbles = [];
+
+            if (bag === 'bag1') {
+                // Bag 1: 500 Blue, 250 Red, 250 Yellow
+                for (let i = 0; i < 500; i++) marbles.push('Blue');
+                for (let i = 0; i < 250; i++) marbles.push('Red');
+                for (let i = 0; i < 250; i++) marbles.push('Yellow');
+            } else if (bag === 'bag2') {
+                // Bag 2: 300 Blue, 400 Red, 300 Yellow
+                for (let i = 0; i < 300; i++) marbles.push('Blue');
+                for (let i = 0; i < 400; i++) marbles.push('Red');
+                for (let i = 0; i < 300; i++) marbles.push('Yellow');
+            }
+
+            const drawnMarbles = [];
+            for (let i = 0; i < numberOfMarbles; i++) {
+                const randomIndex = Math.floor(Math.random() * marbles.length);
+                drawnMarbles.push(marbles[randomIndex]);
+                marbles.splice(randomIndex, 1); // Remove the drawn marble
+            }
+
+            const summary = {
+                Blue: 0,
+                Red: 0,
+                Yellow: 0
+            };
+
+            // Count occurrences of each marble
+            drawnMarbles.forEach(marble => {
+                summary[marble]++;
+            });
+
+            // Display drawn marbles and summary
+            document.getElementById('result').innerText = `Drawn Marbles (${numberOfMarbles} from ${bag === 'bag1' ? 'Bag 1' : 'Bag 2'}): ` + drawnMarbles.join(', ');
+            document.getElementById('summary').innerText = 
+                `Summary: Blue - ${summary.Blue}, Red - ${summary.Red}, Yellow - ${summary.Yellow}`;
+        }
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marble Draw Simulator</title>
+</head>
+<body>
+    <h1>Marble Draw Simulator</h1>
     <button onclick="drawMarbles(10)">Draw 10 Marbles</button>
     <button onclick="drawMarbles(20)">Draw 20 Marbles</button>
     <button onclick="drawMarbles(50)">Draw 50 Marbles</button>
